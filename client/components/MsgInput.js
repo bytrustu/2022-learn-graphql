@@ -18,7 +18,7 @@ const MsgInput = ({ mutate, id = undefined, text = '' }) => {
                 placeholder='내용을 입력하세요.'
                 defaultValue={text}
             />
-            <button type='submit '>완료</button>
+            <button type='submit'>완료</button>
         </form>
     );
 };

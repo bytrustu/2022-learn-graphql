@@ -31,10 +31,12 @@ const messagesRoute = [{
         res.send(newMsg)
     }
 }, {
-    method: 'put', route: '/messages', handler: ({body, params: {id}}, res) => {
+    method: 'put', route: '/messages/:id', handler: ({body, params: {id}}, res) => {
         try {
             const msgs = getMessages()
+            console.log(params)
             const targetIndex = msgs.findIndex(msg => msg.id === id)
+
             if (targetIndex < 0) throw '메세지가 없습니다'
             if (msgs[targetIndex].userId !== body.userId) throw '사용자가 다릅니다'
             const newMsgs = {...msgs[targetIndex], text: body.text}
@@ -46,7 +48,7 @@ const messagesRoute = [{
         }
     }
 }, {
-    method: 'delete', route: '/messages', handler: ({body, params: {id}}, res) => {
+    method: 'delete', route: `/messages/:id`, handler: ({body, params: {userId}}, res) => {
         try {
             const msgs = getMessages()
             const targetIndex = msgs.findIndex(msg => msg.id === id)
